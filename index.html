@@ -3,40 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="assets/js/aframe.js"></script>
-  <script src="assets/js/ar.js"></script>
-  <script src="assets/js/index.js"></script>
+  <script src='https://aframe.io/releases/1.2.0/aframe.min.js'></script>
+  <script src='https://libs.zappar.com/zappar-aframe/2.0.0/zappar-aframe.js'></script>
   <link rel="stylesheet" href="assets/css/style.css">
   <title>AR Project</title>
 </head>
 <body>
-  <a-scene loading-screen="backgroundColor: #344A60">
-    <!-- Ask user for camera permissions, display some text if permission is denied -->
+  <script type="module" src="assets/js/index.js"></script>
+  <a-scene>
+
     <a-entity zappar-permissions-ui id="permissions"></a-entity>
-    <!-- shows a full-page dialog that informs the user they're using an unsupported browser -->
     <a-entity zappar-compatibility-ui id="compatibility"></a-entity>
 
-    <!-- PRE-LOAD OUR ASSETS FOR PERFORMANCE -->
     <a-assets>
       <img id="thumbnail" src="assets/images/thumbnail.png" />
       <video id="main-video" autoplay="false" loop="true" src="assets/video/vid.mp4"></video>
-
-        <!-- MENU ITEMS -->
-        <!-- <img id="web-icon" src="assets/WebLaunch.png"/>
-        <img id="facebook-icon" src="assets/Facebook.png"/>
-        <img id="phone-icon" src="assets/Phone.png"/> -->
-        <!-- MENU ITEM MIXIN -->
-        <!-- <a-mixin id="iconProperties" scale="0.4 0.4 0.4" material="alpha-test:0.5" animation="property: scale; to: 0.5 0.5 0.5; dir: alternate; dur: 2000; loop:true;"></a-mixin> -->
+      <a-asset-item id="target" src="assets/images/target.zpt"/>
     </a-assets>
-    <!-- END ASSET PRE-LOADING -->
 
-    <!-- CREATE A-FRAME CAMERA AND REPLACE IT WITH ZAPPAR'S CAMERA -->
-    <!-- ALLOW USER TO CLICK ON ELEMENTS BY ADDING CURSOR COMPONENT & IDENTIFY RAYCASTER OBJECTS FOR BETTER PERFORMANCE -->
-    <a-camera zappar-camera cursor="rayOrigin: mouse; fuse: false;" raycaster="objects: .clickable"></a-camera>
-
-    <!-- SET UP OUR EXPERIENCE AS IMAGE TRACKING & GIVE IT AN IMAGE TO TRACK -->
-    <a-entity zappar-image="assets/images/target.zpt">
-        <!-- Have a group that will only become visible when the target image comes into view-->
+    <a-entity camera zappar-camera></a-entity>
+    <a-entity zappar-image="target: #target" id="image-group">
         <a-entity visibility-changer>
             <a-plane 
                     src="#main-video"
@@ -60,10 +46,8 @@
                       >
             </a-image>
         </a-entity>
-        <!-- END VISIBILITY CHANGER -->
     </a-entity>
-    <!-- END TRACKING EXPERIENCE -->
-  </a-scene> <!-- END SCENE -->
+  </a-scene> 
 
 </body>
 </html>
