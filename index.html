@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="assets/js/aframe.js"></script>
   <script src="assets/js/ar.js"></script>
-  <script src="assets/js/"></script>
+  <script src="assets/js/index.js"></script>
   <link rel="stylesheet" href="assets/css/style.css">
   <title>AR Project</title>
 </head>
@@ -35,7 +35,7 @@
     <a-camera zappar-camera cursor="rayOrigin: mouse; fuse: false;" raycaster="objects: .clickable"></a-camera>
 
     <!-- SET UP OUR EXPERIENCE AS IMAGE TRACKING & GIVE IT AN IMAGE TO TRACK -->
-    <a-entity zappar-image="target: assets/images/target.zpt">
+    <a-entity zappar-image="assets/images/target.zpt">
         <!-- Have a group that will only become visible when the target image comes into view-->
         <a-entity visibility-changer>
             <a-plane 
